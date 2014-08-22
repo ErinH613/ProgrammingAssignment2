@@ -1,15 +1,53 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Allows you to create a new square matrix and return it's inverse - will not work on non-square matrix
 
-## Write a short comment describing this function
+## first function creates the matrix
 
-makeCacheMatrix <- function(x = matrix()) {
-
+makeCacheMatrix <- function(mymatrix = matrix()) {
+  inversematrix <- NULL ##sets inversematrix to NULL so old data doesn't interfer
+  
+  set <- function(newmatrix) {
+    
+    mymatrix <<- newmatrix ##new matrix will overright old matrix data
+    
+    inversematrix <<- NULL ##inversematrix is initially set to NULL
+    
+  }
+  
+  get <- function() mymatrix
+  
+  setinverse <- function(newinverse) inverse <<- newinverse
+  
+  getinverse <- function() inverse 
+  
+  list (set = set, get = get,
+        
+        setinverse = setinverse,
+        
+        getinverse = getinverse) 
+  
 }
 
 
-## Write a short comment describing this function
+## This function creates an inverse of the square maxtrix, 
+## if myinversematrix is called and already exists if returns the cached data
 
-cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+cacheInverse <- function(mymatrix, ...) {
+  
+  myinversematrix <- mymatrix$getinverse()
+  
+  if(!is.null(myinversematrix)) { 
+    
+    message("getting cached data") 
+    
+    return(myinversematrix) 
+    
+  }
+  
+  data <- mymatrix$get()
+  
+  myinversematrix <- solve(data) 
+  
+  mymatrix$setinverse(myinversematrix)
+  
+  myinversematrix
 }
