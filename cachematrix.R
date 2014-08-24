@@ -2,29 +2,18 @@
 
 ## first function creates the matrix
 
-makeCacheMatrix <- function(mymatrix = matrix()) {
-  inversematrix <- NULL ##sets inversematrix to NULL so old data doesn't interfer
-  
-  set <- function(newmatrix) {
-    
-    mymatrix <<- newmatrix ##new matrix will overright old matrix data
-    
-    inversematrix <<- NULL ##inversematrix is initially set to NULL
-    
+makeCacheMatrix <- function(my.matrix = matrix()) {
+  inverse.matrix <- NULL ##sets inverse_matrix to NULL so old data doesn't interfere
+  set <- function(new.matrix) {
+    my.matrix <<- new.matrix ##new matrix will overright old matrix data
+    inverse.matrix <<- NULL ##inversematrix is initially set to NULL   
   }
-  
-  get <- function() mymatrix
-  
-  setinverse <- function(newinverse) inverse <<- newinverse
-  
-  getinverse <- function() inverse 
-  
-  list (set = set, get = get,
-        
-        setinverse = setinverse,
-        
-        getinverse = getinverse) 
-  
+  get <- function() my.matrix
+  set.inverse <- function(new.inverse) inverse.matrix <<- new.inverse
+  get.inverse <- function() inverse.matrix 
+  list (set = set, get = get, 
+        set.inverse = set.inverse,
+        get.inverse = get.inverse) 
 }
 
 
@@ -45,7 +34,7 @@ cacheInverse <- function(mymatrix, ...) {
   
   data <- mymatrix$get()
   
-  myinversematrix <- solve(data) 
+  myinversematrix <- solve(data, ...) 
   
   mymatrix$setinverse(myinversematrix)
   
