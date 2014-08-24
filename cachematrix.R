@@ -5,7 +5,7 @@
 makeCacheMatrix <- function(my.matrix = matrix()) {
   inverse.matrix <- NULL ##sets inverse_matrix to NULL so old data doesn't interfere
   set <- function(new.matrix) {
-    my.matrix <<- new.matrix ##new matrix will overright old matrix data
+    my.matrix <<- new.matrix ##new matrix will overwrite old matrix data
     inverse.matrix <<- NULL ##inversematrix is initially set to NULL   
   }
   get <- function() my.matrix
@@ -26,7 +26,7 @@ cacheInverse <- function(mymatrix, ...) {
   
   if(!is.null(myinversematrix)) { 
     
-    message("getting cached data") 
+    message("getting cached data") ##informs users that cached data is being retrieved
     
     return(myinversematrix) 
     
@@ -34,9 +34,9 @@ cacheInverse <- function(mymatrix, ...) {
   
   data <- mymatrix$get()
   
-  myinversematrix <- solve(data, ...) 
+  myinversematrix <- solve(data, ...) ##solve creates the inverse matrix
   
   mymatrix$setinverse(myinversematrix)
   
-  myinversematrix
+  myinversematrix ##prints the inverse matrix
 }
